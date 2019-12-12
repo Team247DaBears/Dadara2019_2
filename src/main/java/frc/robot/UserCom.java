@@ -18,18 +18,18 @@ public class UserCom {
 
 
     //Buttons on driver stick
-    private static final int JSB_GEARSHIFT=11;
+    private static final int JSB_GEARSHIFT=1;
 
     //Buttons for operator (driver 2)  probably a game controller.
 
-    private static final int JSB_POSITION_0=1;
+    private static final int JSB_POSITION_0=4;
     private static final int JSB_POSITION_1=2;
-    private static final int JSB_POSITION_2=3;
-    private static final int JSB_POSITION_3=4;
+    private static final int JSB_POSITION_2=1;
+    private static final int JSB_POSITION_3=3;
 
-    private static final int JSB_ROLLERSFORWARD=11;
-    private static final int JSB_ROLLERSREVERSE=11;
-    private static final int JSB_CLAWOPENCLOSE=11;
+    private static final int JSB_ROLLERSFORWARD=6;
+    private static final int JSB_ROLLERSREVERSE=5;
+    private static final int AXIS_CLAWOPENCLOSE=2;
 
 
 
@@ -52,10 +52,10 @@ public class UserCom {
 
     public static LifterStates getCommandedPosition()
     {
-        if (rightStick.getRawButton(JSB_POSITION_0)) return LifterStates.Low;
-        if (rightStick.getRawButton(JSB_POSITION_1)) return LifterStates.Position_1;
-        if (rightStick.getRawButton(JSB_POSITION_2)) return LifterStates.Position_2;
-        if (rightStick.getRawButton(JSB_POSITION_3)) return LifterStates.High;
+        if (operatorStick.getRawButton(JSB_POSITION_0)) return LifterStates.Low;
+        if (operatorStick.getRawButton(JSB_POSITION_1)) return LifterStates.Position_1;
+        if (operatorStick.getRawButton(JSB_POSITION_2)) return LifterStates.Position_2;
+        if (operatorStick.getRawButton(JSB_POSITION_3)) return LifterStates.High;
         return LifterStates.Hold;
 
         
@@ -68,7 +68,8 @@ public class UserCom {
 
     public static boolean getClawButton()
     {
-        return operatorStick.getRawButton(JSB_CLAWOPENCLOSE);
+         if (operatorStick.getRawAxis(AXIS_CLAWOPENCLOSE)>0.5) return true;
+        else return false;
     }
 
     public static boolean rollersForward()

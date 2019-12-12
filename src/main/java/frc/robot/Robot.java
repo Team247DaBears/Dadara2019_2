@@ -24,6 +24,7 @@ public class Robot extends TimedRobot {
   io myIo;
   Lifter lifter;
   UserCom usercom;
+  Claw claw;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
     myIo=new io();
     lifter=new Lifter();
     usercom=new UserCom();
+    claw=new Claw();
     UserCom.init();
     
 
@@ -85,7 +87,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     drive.drive();
-    //lifter.setPosition();
+    claw.operate();
+    lifter.setPosition();
   }
 
   /**

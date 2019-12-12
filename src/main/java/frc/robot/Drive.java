@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 public class Drive
 {
 
@@ -28,6 +30,10 @@ public class Drive
 
           //First, compute the state based on the input and the current state
 
+          if (UserCom.getGearButton()) System.out.println("true");
+          else System.out.println("False");
+          //System.out.println("Gear button is "+UserCom.getGearButton());
+    //System.out.println("Gear state before is "+currentGearState.toString());
           switch(currentGearState)
           {
               case HighGearOff:
@@ -56,7 +62,20 @@ public class Drive
                  break;
                 
             }
+            switch(currentGearState)
+            {
+                case HighGearOff:
+                case HighGearPressed:
+                    io.gearShift.set(DoubleSolenoid.Value.kForward);
+                    break;
+                case LowGearOff:
+                case LowGearPressed:
+                    io.gearShift.set(DoubleSolenoid.Value.kReverse);
+                    break;
+            }
         }
+      //  System.out.println("Gear state after is "+currentGearState.toString());
+
     }       
           
         

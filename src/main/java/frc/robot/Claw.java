@@ -24,20 +24,21 @@ public class Claw
         //Remember, the orientation of the motors on the claw is the same,
         //but they have to pull in opposite directions.
         //(Unless the build team decided to wire them opposite already.)
+        
         if (UserCom.rollersReverse())
         {
-            io.leftRoller.set(Value.kReverse);
-            io.rightRoller.set(Value.kForward);
+            io.leftRollerMotor.set(1);
+            io.rightRollerMotor.set(-1);
         }
         else if (UserCom.rollersForward())
         {
-            io.leftRoller.set(Value.kForward);
-            io.rightRoller.set(Value.kReverse);
+            io.leftRollerMotor.set(-1);
+            io.rightRollerMotor.set(1);
         }
         else
         {
-            io.leftRoller.set(Value.kOff);
-            io.rightRoller.set(Value.kOff);
+            io.leftRollerMotor.set(0);
+            io.rightRollerMotor.set(0);
         }
 
     }

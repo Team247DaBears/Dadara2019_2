@@ -13,17 +13,21 @@ public class io {
     private final int BACKLEFTPWM=0;
     private final int BACKRIGHTPWM=3;
 
-    private final int CLAWSOLENOID=5;
-    private final int GEARFORWARD=11;
-    private final int GEARREVERSE=11;
+    private final int CLAWSOLENOID=7;
+    private final int GEARFORWARD=0;
+    private final int GEARREVERSE=1;
 
-    private final int LOWLIFTERFORWARD=1;
-    private final int LOWLIFTERREVERSE=2;
-    private final int HIGHLIFTERFORWARD=3;
-    private final int HIGHLIFTERREVERSE=4;
+    private final int LOWLIFTERFORWARD=2;
+    private final int LOWLIFTERREVERSE=3;
+    private final int HIGHLIFTERFORWARD=4;
+    private final int HIGHLIFTERREVERSE=5;
 
-    private final int LEFTROLLER=11;
-    private final int RIGHTROLLER=11;
+    private final int CABLETENSIONER=6;
+    
+
+
+    private final int LEFTROLLER=4;
+    private final int RIGHTROLLER=5;
 
 
     public static SpeedController frontLeft;
@@ -34,6 +38,7 @@ public class io {
 
     //I am assuming there is one solenoid for opening and closing the claw
     public static Solenoid  clawSolenoid;
+    public static Solenoid  cableTensioner;
 
     public static DoubleSolenoid lowLifter;
     public static DoubleSolenoid highLifter;
@@ -45,8 +50,8 @@ public class io {
     //the motors were activated by relays, not with motor controllers.  So, if it really was exactly the same, this will work,
     //otherwise, there will have to be another set of SpeedController objects
 
-    public static Relay leftRoller;
-    public static Relay rightRoller;
+  //  public static Relay leftRoller;
+  //  public static Relay rightRoller;
     
     //So, I'll add another set of controls, and you can comment out whichever is unused.
     public static SpeedController leftRollerMotor;
@@ -70,14 +75,15 @@ public class io {
         lowLifter=new DoubleSolenoid(LOWLIFTERFORWARD,LOWLIFTERREVERSE);
         highLifter=new DoubleSolenoid(HIGHLIFTERFORWARD, HIGHLIFTERREVERSE);
 
-        leftRoller=new Relay(LEFTROLLER);
-        rightRoller=new Relay(RIGHTROLLER);
+    //    leftRoller=new Relay(LEFTROLLER);
+    //    rightRoller=new Relay(RIGHTROLLER);
         
 
         leftRollerMotor=new Victor(LEFTROLLER);
         rightRollerMotor=new Victor(RIGHTROLLER);
 
         gearShift=new DoubleSolenoid(GEARFORWARD, GEARREVERSE);
+        cableTensioner=new Solenoid(CABLETENSIONER);
 
 
     }
